@@ -1,0 +1,18 @@
+[Unit]
+Description=Databoutique Open Bid Monitor
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=YOUR_USERNAME
+WorkingDirectory=/opt/bid-monitor
+EnvironmentFile=/opt/bid-monitor/.env
+ExecStart=/usr/bin/python3 /opt/bid-monitor/bid_monitor.py
+Restart=on-failure
+RestartSec=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
